@@ -12,7 +12,7 @@ router.post(
     body('password')
       .trim()
       .isLength({ min: 4, max: 30 })
-      .withMessage('Password must be between 4 and 20 characters'),
+      .withMessage('Password must be between 4 and 20 characters')
   ],
   (req: Request, res: Response) => {
     const errors = validationResult(req)
