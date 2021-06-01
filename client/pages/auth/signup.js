@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import axios from 'axios'
 
+import useRequest from '../../hooks/use_request'
+
 export default () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -15,7 +17,7 @@ export default () => {
         password
       })
     } catch (error) {
-      setErrors(error.data.errors)
+      setErrors(error.response.data.errors)
     }
   }
 
@@ -38,14 +40,7 @@ export default () => {
         />
       </div>
       {errors.length > 0 && (
-        <div className="alert alert-dange">
-          <h4>Ooops...</h4>
-          <ul className="my-0">
-            {errors.map((err) => (
-              <li key={err.message}>{err.message}</li>
-            ))}
-          </ul>
-        </div>
+        
       )}
       <button className="btn btn-primary">Sign Up</button>
     </form>
