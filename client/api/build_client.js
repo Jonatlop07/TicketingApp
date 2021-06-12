@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-export default ({ req }) => {
+const buildClient = ({ req }) => {
   if (typeof window === 'undefined') {
     return axios.create({
       baseURL:
@@ -12,3 +12,5 @@ export default ({ req }) => {
     baseURL: '/'
   })
 }
+
+export default buildClient
