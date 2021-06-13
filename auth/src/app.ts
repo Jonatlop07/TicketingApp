@@ -7,8 +7,7 @@ import { currentUserRouter } from './routes/current_user'
 import { signinRouter } from './routes/signin'
 import { signoutRouter } from './routes/signout'
 import { signupRouter } from './routes/signup'
-import { errorHandler } from './middlewares/error_handler'
-import { NotFoundError } from './errors/not_found_error'
+import { errorHandler, NotFoundError } from '@jonatlop-ticketing/common'
 
 const app = express()
 app.set('trust proxy', true)
