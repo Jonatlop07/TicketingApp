@@ -2,6 +2,9 @@ import request from 'supertest'
 import { app } from '../../app'
 import { Ticket } from '../../models/ticket'
 
+const title = 'Ticket'
+const price = 12.2
+
 it('has a route handler listening to /api/tickets for post requests', async () => {
   const response = await request(app).post('/api/tickets').send({})
   expect(response.status).not.toEqual(404)
@@ -33,7 +36,7 @@ it('returns an error if an invalid title is provided', async () => {
     .post('/api/tickets')
     .set('Cookie', global.signin())
     .send({
-      price: 10
+      price
     })
     .expect(400)
 })
@@ -43,7 +46,7 @@ it('returns an error if an invalid price is provided', async () => {
     .post('/api/tickets')
     .set('Cookie', global.signin())
     .send({
-      title: 'Ticket',
+      title,
       price: -10
     })
     .expect(400)
@@ -52,7 +55,7 @@ it('returns an error if an invalid price is provided', async () => {
     .post('/api/tickets')
     .set('Cookie', global.signin())
     .send({
-      title: 'Ticket'
+      title
     })
     .expect(400)
 })
@@ -60,9 +63,6 @@ it('returns an error if an invalid price is provided', async () => {
 it('creates a ticket with valid inputs', async () => {
   let tickets = await Ticket.find({})
   expect(tickets.length).toEqual(0)
-
-  const title = 'Ticket'
-  const price = 12.2
 
   await request(app)
     .post('/api/tickets')
