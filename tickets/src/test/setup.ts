@@ -1,7 +1,5 @@
 import { MongoMemoryServer } from 'mongodb-memory-server'
 import mongoose from 'mongoose'
-import request from 'supertest'
-import { app } from '../app'
 import jwt from 'jsonwebtoken'
 
 declare global {
@@ -35,8 +33,8 @@ beforeEach(async () => {
 })
 
 afterAll(async () => {
-  await mongo.stop()
   await mongoose.connection.close()
+  await mongo.stop()
 })
 
 global.signin = () => {
