@@ -11,7 +11,7 @@ spec:
     metadata:
       labels:
         app: nats
-    specs:
+    spec:
       containers:
         - name: nats
           image: nats-streaming:0.22.0
